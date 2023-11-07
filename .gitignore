@@ -1,0 +1,21 @@
+# Virtual Environment
+favenv/
+
+# Python #
+*.py[cod]
+*$py.class
+__pycache__
+
+project/media
+
+# lOG FILES
+*.log
+
+# env files
+.env
+
+
+.pytest_cache
+
+.idea/
+.vscode/
