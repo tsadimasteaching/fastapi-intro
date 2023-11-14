@@ -12,3 +12,13 @@ source favenv/bin/activate
 ```bash
 pip install fastapi
 ```
+
+* build fastapi image
+```bash
+docker build -t fastapi -f fastapi.Dockerfile .
+```
+
+* run fastapi container
+```bash
+docker run -d -p 8000:8000 fastapi
+```
