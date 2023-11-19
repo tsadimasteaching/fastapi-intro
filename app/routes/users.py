@@ -3,25 +3,28 @@ import os
 from fastapi import FastAPI, Response, APIRouter
 from pydantic import BaseModel, StrictBool
 from sqlmodel import Field, Session, SQLModel, create_engine, select
+from sqlalchemy.orm import selectinload
 from fastapi.exceptions import HTTPException
-from app.models import User, UserBase
+from app.models import User, UserBase, UserwithPosts
 from app.db import engine
 
 router = APIRouter()
-@router.get("/user")
+@router.get("/")
 def list_users() -> List[User]:
     with Session(engine) as session:
         heroes = session.exec(select(User)).all()
         return heroes
 
 
-@router.get("/user/{user_id}")
-def get_user(user_id: int) -> User|None:
+@router.get("/{user_id}")
+def get_user(user_id: int) -> UserwithPosts|None:
     try:
         with Session(engine) as session:
-            user = session.get(User, user_id)
+            user = session.exec(select(User).options(selectinload(User.posts)).where(User.id == user_id)).first()
             return user
-    except:
+
+    except Exception as e:
+        print(e)
         raise HTTPException(status_code=404, detail="User not found")
 
 @router.post("/")

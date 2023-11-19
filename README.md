@@ -28,3 +28,5 @@ docker run -d -p 8000:8000 fastapi
 docker-compose up -build
 ```
 
+# Links
+*[Models with Relationships in FastAPI](https://sqlmodel.tiangolo.com/tutorial/fastapi/relationships/)
