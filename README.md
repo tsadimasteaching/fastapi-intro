@@ -22,3 +22,9 @@ docker build -t fastapi -f fastapi.Dockerfile .
 ```bash
 docker run -d -p 8000:8000 fastapi
 ```
+
+* run with docker-compose
+```bash
+docker-compose up -build
+```
+
