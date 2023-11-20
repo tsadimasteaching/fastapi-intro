@@ -1,7 +1,6 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List, ForwardRef
 
-UserWithPosts = ForwardRef('UserWithPosts')
 
 class UserBase(SQLModel):
     name: str = Field(index=True)
@@ -14,6 +13,7 @@ class User(UserBase, table=True):
 
 class UserRead(UserBase):
     id: int
+
 class PostBase(SQLModel):
     title: str
     body: str
@@ -26,8 +26,11 @@ class Post(PostBase, table=True):
 
 class PostRead(PostBase):
     id: int
-class UserwithPosts(UserBase):
-    id: Optional[int] = None
-    posts: List[Post] = []
+
+class UserwithPosts(UserRead):
+    posts: List[PostRead] = []
+
+class PostwithUser(PostRead):
+    user: Optional[UserRead] = None
 
 

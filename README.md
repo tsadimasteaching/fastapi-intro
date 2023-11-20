@@ -30,3 +30,4 @@ docker-compose up -build
 
 # Links
 *[Models with Relationships in FastAPI](https://sqlmodel.tiangolo.com/tutorial/fastapi/relationships/)
+*[Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/)
