@@ -17,10 +17,11 @@ class UserRead(UserBase):
 class PostBase(SQLModel):
     title: str
     body: str
-    user_id: int = Field(foreign_key="user.id")
+
 
 
 class Post(PostBase, table=True):
+    user_id: int = Field(foreign_key="user.id")
     id: Optional[int] = Field(default=None, primary_key=True)
     user: Optional[User] = Relationship(back_populates="posts")
 
